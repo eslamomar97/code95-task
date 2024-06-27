@@ -46,8 +46,28 @@ Start the Docker containers:
 docker-compose up -d
 ```
 
-```bash
-docker-compose up -d
-Open your web browser and navigate to http://localhost to complete the WordPress setup.
-```
+
+**Configuration**
+
+- **MySQL Database:**
+  - Host: `db:3306`
+  - Database: `wordpress`
+  - Username: `wordpressuser`
+  - Password: `wordpresspassword`
+
+- **WordPress Admin:**
+  - Access your WordPress admin panel at [http://localhost:8080/wp-admin](http://localhost:8080/wp-admin).
+  - Log in with the credentials set during the WordPress installation.
+
+- **phpMyAdmin:**
+  - Access phpMyAdmin at [http://localhost:8082](http://localhost:8082) with MySQL root credentials:
+    - Username: `root`
+    - Password: `rootpassword`
+
+**Notes**
+
+- Make sure ports `8080`, `8082`, and `8083` are available on your host machine and not already used by other services.
+- Adjust the `nginx.conf` file in your repository based on your specific Nginx configuration needs.
+- This setup uses Docker volumes for persistent storage of MySQL and WordPress data.
+
 
