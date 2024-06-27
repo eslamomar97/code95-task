@@ -13,11 +13,9 @@ services:
       MYSQL_PASSWORD: wordpresspassword
 
   wordpress:
-    image: wordpress:latest
+    image: wordpress:php8.2-fpm
     volumes:
       - wordpress_data:/var/www/html
-    ports:
-      - "8083:9000"  # WordPress container exposed on port 8080
     restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
@@ -38,7 +36,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "8080:80"  # Expose port 8083 on the host to match nginx.conf
+      - "8080:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
