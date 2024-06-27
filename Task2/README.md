@@ -14,6 +14,7 @@ This guide details the steps to set up a LEMP stack and run PHP-FPM as a user na
     sudo passwd wptask
     sudo mkdir -p /home/wptask/public_html
     sudo chown -R wptask:wptask /home/wptask/public_html
+    sudo chmod 755 /home/wpstask
     ```
 
 2. **Install Nginx:**
@@ -24,12 +25,12 @@ This guide details the steps to set up a LEMP stack and run PHP-FPM as a user na
     sudo systemctl start nginx
     ```
 
-3. **Install PHP and PHP-FPM:**
+3. **Install PHP and PHP-FPM with Necessary Extensions:**
     ```sh
     sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
     sudo dnf module reset php
     sudo dnf module enable php:remi-8.2
-    sudo dnf install -y php php-fpm php-mysqlnd
+    sudo dnf install -y php php-fpm php-mysqlnd php-json php-gd php-mbstring php-xml php-xmlrpc php-opcache php-curl php-intl php-imagick php-zip
     sudo systemctl enable php-fpm
     sudo systemctl start php-fpm
     ```
@@ -43,6 +44,7 @@ This guide details the steps to set up a LEMP stack and run PHP-FPM as a user na
     ```conf
     user = wptask
     group = wptask
+    listen = 127.0.0.1:9000
     listen.owner = nginx
     listen.group = nginx
     ```
@@ -71,8 +73,7 @@ This guide details the steps to set up a LEMP stack and run PHP-FPM as a user na
 
         location ~ \.php$ {
             try_files $uri =404;
-            fastcgi_split_path_info ^(.+\.php)(/.+)$;
-            fastcgi_pass unix:/var/run/php-fpm/www.sock;
+            fastcgi_pass 127.0.0.1:9000;
             fastcgi_index index.php;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             include fastcgi_params;
@@ -119,7 +120,7 @@ This guide details the steps to set up a LEMP stack and run PHP-FPM as a user na
     sudo mysql -u root -p
 
     CREATE DATABASE wordpress;
-    CREATE USER 'wpuser'@'%' IDENTIFIED BY 'your_password';
+    CREATE USER 'wpuser'@'%' IDENTIFIED BY 'wpuser';
     GRANT ALL PRIVILEGES ON wordpress.* TO 'wpuser'@'%';
     FLUSH PRIVILEGES;
     EXIT;
