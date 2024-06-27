@@ -40,13 +40,6 @@ server {
 ```
 Ensure you are in the directory containing the `docker-compose.yml` file.
 
-Start the Docker containers:
-
-```bash
-docker-compose up -d
-```
-
-
 **Configuration**
 
 - **MySQL Database:**
@@ -70,4 +63,15 @@ docker-compose up -d
 - Adjust the `nginx.conf` file in your repository based on your specific Nginx configuration needs.
 - This setup uses Docker volumes for persistent storage of MySQL and WordPress data.
 
+Start the Docker containers:
 
+```bash
+docker-compose up -d
+```
+
+**Access WordPress:**
+
+- WordPress site: [http://localhost:8080](http://localhost:8080)
+- phpMyAdmin (for database management): [http://localhost:8082](http://localhost:8082)
+
+**Stop the Docker containers:**
