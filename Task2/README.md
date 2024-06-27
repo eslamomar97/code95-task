@@ -1,4 +1,4 @@
-# LEMP Stack Setup on CentOS 8 with WordPress
+Task 2: LEMP Stack Setup on CentOS 8 with WordPress
 
 This guide details the steps to set up a LEMP stack and run PHP-FPM as a user named `wptask` with `public_html` at `/home/wptask/public_html` on CentOS 8. The setup includes creating two virtual machines: one for the web server (Nginx and PHP) and the other for the database server (MySQL 8).
 
