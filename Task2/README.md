@@ -248,4 +248,3 @@ This guide details the steps to set up a LEMP stack and run PHP-FPM as a user na
 3. **Access WordPress Setup:**
     Open a web browser and navigate to `http://firstwebsite.com` to complete the WordPress installation.
 
-Following these steps, you will have a working LEMP stack with WordPress running under the `wptask` user, with the web server and database server on separate virtual machines, each with a static IP address configured.
