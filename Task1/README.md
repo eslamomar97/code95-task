@@ -27,10 +27,9 @@ server {
     }
 
     location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass php-fpm:9000;
+	    include fastcgi_params;
+        fastcgi_pass wordpress:9000;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include fastcgi_params;
     }
 
     location ~ /\.ht {
@@ -59,8 +58,7 @@ Ensure you are in the directory containing the `docker-compose.yml` file.
 
 **Notes**
 
-- Make sure ports `8080`, `8082`, and `8083` are available on your host machine and not already used by other services.
-- Adjust the `nginx.conf` file in your repository based on your specific Nginx configuration needs.
+- Make sure ports `8080`, `8082` are available on your host machine and not already used by other services.
 - This setup uses Docker volumes for persistent storage of MySQL and WordPress data.
 
 Start the Docker containers:
