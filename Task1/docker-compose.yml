@@ -13,7 +13,7 @@ services:
       MYSQL_PASSWORD: wordpresspassword
 
   wordpress:
-    image: wordpress:php8.2-fpm
+    image: wordpress:php8.4-fpm
     volumes:
       - public_html:/var/www/html
     restart: always
