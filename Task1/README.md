@@ -2,12 +2,12 @@
 
 This repository contains a Docker Compose configuration for setting up WordPress with Nginx, PHP-FPM 8.2, and MySQL 8 in the Task1 folder.
 
-## Prerequisites
+### Prerequisites
 
 - Docker
 - Docker Compose
 
-## Getting Started
+### Getting Started
 
 
 ### Nginx Configuration
