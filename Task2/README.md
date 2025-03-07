@@ -87,7 +87,7 @@ This guide details the steps to set up a LEMP stack and run PHP-FPM as a user na
     Add the following configuration:
     ```conf
     server {
-        listen 808;
+        listen 80;
         server_name firstwebsite.com;
         root /home/wptask/public_html;
 
