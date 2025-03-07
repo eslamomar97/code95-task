@@ -1,6 +1,6 @@
-# Task 2: LEMP Stack Setup on CentOS 8 with WordPress
+# Task 2: LEMP Stack Setup on ubuntu with WordPress
 
-This guide details the steps to set up a LEMP stack and run PHP-FPM as a user named `wptask` with `public_html` at `/home/wptask/public_html` on CentOS 8. The setup includes creating two virtual machines: one for the web server (Nginx and PHP) and the other for the database server (MySQL 8).
+This guide details the steps to set up a LEMP stack and run PHP-FPM as a user named `wptask` with `wordpress` at `/home/wptask/public_html/wordpress/` on ubuntu. The setup includes creating two virtual machines: one for the web server (Nginx and PHP) and the other for the database server (MySQL 8).
 
 ## Virtual Machine 1: Web Server Setup
 
@@ -39,8 +39,8 @@ This guide details the steps to set up a LEMP stack and run PHP-FPM as a user na
     ```sh
     sudo useradd -m -d /home/wptask wptask
     sudo passwd wptask
-    sudo mkdir -p /home/wptask/public_html
-    sudo chown -R wptask:wptask /home/wptask/public_html
+    sudo mkdir -p /home/wptask/public_html/wordpress/
+    sudo chown -R wptask:wptask /home/wptask/public_html/
     ```
 
 3. **Install Nginx:**
@@ -55,7 +55,7 @@ This guide details the steps to set up a LEMP stack and run PHP-FPM as a user na
     ```sh
     sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
     sudo dnf module reset php
-    sudo dnf module enable php:remi-8.2
+    sudo dnf module enable php:remi-8.4
     sudo dnf install -y php php-fpm php-mysqlnd php-json php-gd php-mbstring php-xml php-xmlrpc php-opcache php-curl php-intl php-imagick php-zip
     sudo systemctl enable php-fpm
     sudo systemctl start php-fpm
@@ -89,7 +89,7 @@ This guide details the steps to set up a LEMP stack and run PHP-FPM as a user na
     server {
         listen 80;
         server_name firstwebsite.com;
-        root /home/wptask/public_html;
+        root /home/wptask/public_html/wordpress;
 
         index index.php index.html index.htm;
 
@@ -211,8 +211,8 @@ This guide details the steps to set up a LEMP stack and run PHP-FPM as a user na
 2. **Configure WordPress:**
     Copy and edit the sample configuration file:
     ```sh
-    cp /home/wptask/public_html/wp-config-sample.php /home/wptask/public_html/wp-config.php
-    vi /home/wptask/public_html/wp-config.php
+    cp /home/wptask/public_html/wordpress/wp-config-sample.php /home/wptask/public_html/wp-config.php
+    vi /home/wptask/public_html/wordpress/wp-config.php
     ```
     Modify the database settings:
     ```php
